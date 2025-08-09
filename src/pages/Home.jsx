@@ -186,8 +186,8 @@ export default function Home() {
 
             {/* Modal pour affichage en grand */}
             {selectedPack && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4" onClick={() => setSelectedPack(null)}>
-                    <div className="relative bg-white rounded-2xl sm:rounded-3xl max-w-6xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto" onClick={() => setSelectedPack(null)}>
+                    <div className="relative bg-white rounded-2xl sm:rounded-3xl max-w-6xl w-full my-4 shadow-2xl min-h-[400px]" onClick={(e) => e.stopPropagation()}>
                         {/* Bouton fermer */}
                         <button 
                             onClick={() => setSelectedPack(null)}
@@ -196,20 +196,20 @@ export default function Home() {
                             ✕
                         </button>
 
-                        <div className="flex flex-col lg:grid lg:grid-cols-2 h-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto lg:overflow-hidden">
-                            {/* Image */}
-                            <div className="relative h-48 sm:h-64 lg:h-full flex-shrink-0">
+                        <div className="flex flex-col lg:grid lg:grid-cols-5">
+                            {/* Image - Plus petite sur desktop */}
+                            <div className="relative h-48 sm:h-56 lg:h-full lg:col-span-2 flex-shrink-0">
                                 <img 
                                     src={selectedPack.image} 
                                     alt={selectedPack.name}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover rounded-t-2xl sm:rounded-t-3xl lg:rounded-l-2xl lg:rounded-tr-none sm:lg:rounded-l-3xl"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent lg:hidden"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent lg:hidden rounded-t-2xl sm:rounded-t-3xl"></div>
                             </div>
 
-                            {/* Contenu */}
-                            <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between lg:overflow-y-auto">
-                                <div>
+                            {/* Contenu - Plus d'espace sur desktop */}
+                            <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-between min-h-[400px] lg:min-h-[450px] lg:col-span-3">
+                                <div className="flex-1">
                                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4">
                                         <span className="text-2xl sm:text-3xl">🍽️</span>
                                         <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800">
@@ -258,7 +258,7 @@ export default function Home() {
                                 </div>
 
                                 {/* Boutons d'action */}
-                                <div className="space-y-2 sm:space-y-3 pt-4 border-t border-gray-100 lg:border-t-0 lg:pt-0">
+                                <div className="space-y-2 sm:space-y-3 pt-4 border-t border-gray-100">
                                     <button 
                                         onClick={() => {
                                             alert(`${selectedPack.name} ajouté au panier avec succès! 🎉`);
